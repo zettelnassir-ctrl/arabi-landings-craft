@@ -66,19 +66,24 @@ const ComingSoonDialog = ({ open, onOpenChange }: ComingSoonDialogProps) => {
     await new Promise(resolve => setTimeout(resolve, 1000));
     
     setIsLoading(false);
-    setIsSubmitted(true);
     
+    // عرض رسالة النجاح أولاً
     toast({
       title: "✅ تم التسجيل بنجاح!",
       description: "شكراً! سنخبرك فور إطلاق النسخة التجريبية.",
     });
-
-    // إغلاق الـ dialog بعد 2 ثانية
+    
+    // ثم عرض شاشة النجاح
     setTimeout(() => {
-      onOpenChange(false);
-      setIsSubmitted(false);
-      setContactValue("");
-    }, 2000);
+      setIsSubmitted(true);
+      
+      // إغلاق الـ dialog بعد 3 ثواني إضافية لضمان رؤية الرسالة
+      setTimeout(() => {
+        onOpenChange(false);
+        setIsSubmitted(false);
+        setContactValue("");
+      }, 3000);
+    }, 500);
   };
 
   if (isSubmitted) {
