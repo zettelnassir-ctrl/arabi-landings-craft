@@ -21,6 +21,7 @@ import path from "path";
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 var vite_config_default = defineConfig({
   base: "/arabi-landings-craft/",
+  // ← أضيفي هذا السطر
   plugins: [
     react(),
     runtimeErrorOverlay()
