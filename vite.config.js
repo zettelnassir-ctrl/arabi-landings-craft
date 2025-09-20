@@ -8,7 +8,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export default defineConfig({
-  base: '/arabi-landings-craft/',
+  base: '/',
   plugins: [
     react(),
     runtimeErrorOverlay(),
@@ -22,10 +22,22 @@ export default defineConfig({
   },
   root: path.resolve(__dirname, "client"),
   build: {
-    outDir: path.resolve(__dirname, "dist/public"),
+    outDir: path.resolve(__dirname, "dist"),
     emptyOutDir: true,
+    rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, 'client/index.html')
+      },
+      output: {
+        manualChunks: {
+          react: ['react', 'react-dom'],
+          radix: ['@radix-ui/react-*']
+        }
+      }
+    }
   },
   server: {
+    open: '/client/index.html',
     fs: {
       strict: true,
       deny: ["**/.*"],
